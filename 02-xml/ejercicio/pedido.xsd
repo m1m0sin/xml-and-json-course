@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           elementFormDefault="unqualified"
-           attributeFormDefault="unqualified">
+<xs:schema 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
 
   <xs:simpleType name="nonEmptyString">
     <xs:restriction base="xs:string">
@@ -63,15 +64,15 @@
           </xs:complexType>
         </xs:element>
 
-        <xs:element name="total" type="moneyNonNegative"/>
+        <xs:element name="total" type="moneyNonNegative" />
       </xs:sequence>
     </xs:complexType>
 
-    <!-- RN-1: Unicidad de @codigo por ítem -->
+    <!-- RN-1: códigos únicos -->
     <xs:unique name="uniqueCodigoItem">
       <xs:selector xpath="items/item"/>
       <xs:field xpath="@codigo"/>
     </xs:unique>
-  </xs:element>
 
+  </xs:element>
 </xs:schema>
