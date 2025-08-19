@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pedido xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="pedido.xsd">
+  <cliente>
+    <nombre>María Pérez</nombre>
+    <email>maria.perez@example.com</email>
+  </cliente>
+  <items>
+    <item codigo="I0001">
+      <descripcion>Teclado mecánico TKL</descripcion>
+      <cantidad>2</cantidad>
+      <precioUnitario>10.50</precioUnitario>
+    </item>
+    <item codigo="I0002">
+      <descripcion>Mouse inalámbrico</descripcion>
+      <cantidad>3</cantidad>
+      <precioUnitario>5.20</precioUnitario>
+    </item>
+  </items>
+  <total>36.60</total>
+</pedido>

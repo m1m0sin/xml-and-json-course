@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="unqualified"
+           attributeFormDefault="unqualified">
+
+  <xs:simpleType name="nonEmptyString">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:pattern value=".*\S.*"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="emailType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="codigoItem">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="I\d{4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="moneyPositive">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0.01"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="moneyNonNegative">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:element name="pedido">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="cliente">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" type="nonEmptyString"/>
+              <xs:element name="email" type="emailType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="items">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="item" maxOccurs="unbounded" minOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="descripcion" type="nonEmptyString"/>
+                    <xs:element name="cantidad" type="xs:positiveInteger"/>
+                    <xs:element name="precioUnitario" type="moneyPositive"/>
+                  </xs:sequence>
+                  <xs:attribute name="codigo" type="codigoItem" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="total" type="moneyNonNegative"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <!-- RN-1: Unicidad de @codigo por ítem -->
+    <xs:unique name="uniqueCodigoItem">
+      <xs:selector xpath="items/item"/>
+      <xs:field xpath="@codigo"/>
+    </xs:unique>
+  </xs:element>
+
+</xs:schema>
