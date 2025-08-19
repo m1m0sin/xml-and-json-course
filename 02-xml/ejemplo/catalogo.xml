@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogo 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="catalogo-schema.xsd">
+    <producto id="P001">
+        <nombre>Product 001</nombre>
+        <precio>100.00</precio>
+        <stock>10</stock>
+    </producto>
+    <producto id="P002" categoria="ELEC">
+        <nombre>Product 002</nombre>
+        <precio>120.00</precio>
+        <stock>0</stock>
+    </producto>
+    <producto id="P003">
+        <nombre>Product 003</nombre>
+        <precio>85.50</precio>
+        <stock>3</stock>
+    </producto>
+</catalogo>
